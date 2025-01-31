@@ -27,9 +27,10 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  <link href="assets/css/calc.css" rel="stylesheet">
   <!-- =======================================================
   * Template Name: Append
   * Template URL: https://bootstrapmade.com/append-bootstrap-website-template/
@@ -327,6 +328,8 @@
       </div>
 
     </section><!-- /Services Section -->
+
+
 
     <!-- Features Section -->
     <section id="features" class="features section">
@@ -670,7 +673,20 @@
                 <h3>Mãos a Obra</h3>
                 <p>Junte-se a nós e veja de perto como transformamos ideias em realidade. Acompanhe nosso trabalho e
                   inspire-se para começar o seu próprio projeto!</p>
-                <a class="cta-btn" href="#">Solicitar Orçamento</a>
+
+
+                  <h2>Calculadora de Tinta</h2>
+    <p>Quantas paredes você deseja pintar?</p>
+    <input type="number" id="quantidadeParedes" min="1" step="1">
+    <button onclick="gerarTabela()">Gerar Tabela</button>
+
+    <div id="formulario"></div>
+    <h3 id="resultado"></h3>
+
+    <script src="script.js"></script>
+    
+    <a class="cta-btn" href="#">Solicitar Orçamento</a>
+                </section>
               </div>
             </div>
           </div>
@@ -966,6 +982,7 @@
 
   <!-- Main JS File -->
   <!-- Bootstrap JS -->
+  <script src="assets/js/calc.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="assets/js/main.js"></script>
 
