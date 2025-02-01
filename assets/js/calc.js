@@ -1,112 +1,70 @@
-function gerarTabela() {
-    const quantidade = parseInt(document.getElementById('quantidadeParedes').value) || 0;
-    const formulario = document.getElementById('formulario');
-    formulario.innerHTML = ''; // Limpa a tabela anterior
+function gerarCampos() {
+    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
+    let paredesContainer = document.getElementById("paredesContainer");
+    paredesContainer.innerHTML = "";  
 
-    if (quantidade > 0) {
-        let tabelaHTML = `
-            <p>O trabalho será:</p>
-            <input type="radio" id="nova" name="tipoPintura" value="nova" checked>
-            <label for="nova">Pintura Nova</label>
-            <input type="radio" id="repintura" name="tipoPintura" value="repintura">
-            <label for="repintura">Repintura (com selador)</label>
+    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) return;
 
-            <p>Preparação da parede:</p>
-            <input type="checkbox" id="massaCorrida">
-            <label for="massaCorrida">Reparo com massa corrida ou gesso</label><br>
-            <input type="checkbox" id="lixarParede">
-            <label for="lixarParede">Lixar a parede</label><br>
-            <input type="checkbox" id="limparParede">
-            <label for="limparParede">Limpar a parede antes de pintar</label>
-
-            <p>Quantas demãos de tinta serão aplicadas?</p>
-            <input type="number" id="demaos" min="1" max="3" value="2">
-
-            <table>
-                <tr>
-                    <th>Parede</th>
-                    <th>Largura (m)</th>
-                    <th>Altura (m)</th>
-                </tr>
+    for (let i = 1; i <= quantidadeParedes; i++) {
+        let div = document.createElement("div");
+        div.classList.add("form-row");
+        div.innerHTML = `
+            <div class="form-group">
+                <label for="largura${i}">Largura ${i} (m)</label>
+                <input type="number" id="largura${i}" placeholder="Ex: 3">
+            </div>
+            <div class="form-group">
+                <label for="altura${i}">Altura ${i} (m)</label>
+                <input type="number" id="altura${i}" placeholder="Ex: 2.5">
+            </div>
         `;
-
-        for (let i = 1; i <= quantidade; i++) {
-            tabelaHTML += `
-                <tr>
-                    <td>${i}</td>
-                    <td><input type="number" id="largura${i}" step="0.1"></td>
-                    <td><input type="number" id="altura${i}" step="0.1"></td>
-                </tr>
-            `;
-        }
-
-        tabelaHTML += `
-            </table>
-            <button onclick="calcularMateriais(${quantidade})">Calcular Materiais</button>
-        `;
-
-        formulario.innerHTML = tabelaHTML;
+        paredesContainer.appendChild(div);
     }
 }
 
-function calcularMateriais(quantidade) {
-    let areaTotal = 0;
+function calcularMateriais() {
+    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
+    let tipoPintura = document.getElementById("tipoPintura").value;
+    let usarSelador = document.getElementById("usarSelador").checked;
+    
+    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) {
+        alert("Preencha o número de paredes corretamente!");
+        return;
+    }
 
-    for (let i = 1; i <= quantidade; i++) {
-        let largura = parseFloat(document.getElementById(`largura${i}`).value) || 0;
-        let altura = parseFloat(document.getElementById(`altura${i}`).value) || 0;
+    let areaTotal = 0;
+    for (let i = 1; i <= quantidadeParedes; i++) {
+        let largura = parseFloat(document.getElementById(`largura${i}`).value);
+        let altura = parseFloat(document.getElementById(`altura${i}`).value);
+
+        if (isNaN(largura) || isNaN(altura)) {
+            alert(`Preencha corretamente os valores da parede ${i}!`);
+            return;
+        }
+
         areaTotal += largura * altura;
     }
 
-    const tipoPintura = document.querySelector('input[name="tipoPintura"]:checked').value;
-    const demãos = parseInt(document.getElementById("demaos").value) || 2;
-    const massaCorrida = document.getElementById("massaCorrida").checked;
-    const lixarParede = document.getElementById("lixarParede").checked;
-    const limparParede = document.getElementById("limparParede").checked;
+    let rendimentoTinta = tipoPintura === "nova" ? 5 : 7;  
+    let totalTinta = areaTotal / rendimentoTinta;
 
-    const coberturaTinta = 5; // 1 litro cobre 5m²
-    let litrosTinta = (areaTotal / coberturaTinta) * demãos;
+    let seladorNecessario = usarSelador ? areaTotal / 10 : 0;  
 
-    // Ajuste para repintura (30% menos tinta)
-    let litrosSelador = 0;
-    if (tipoPintura === "repintura") {
-        litrosTinta *= 0.7;
-        litrosSelador = areaTotal / 10; // 1 litro de selador cobre 10m²
-    }
+    let tintaRestante = totalTinta;
+    let latas18L = Math.floor(tintaRestante / 18);
+    tintaRestante -= latas18L * 18;
 
-    // Se precisar de massa corrida, aumenta 15% o consumo de tinta e adiciona massa corrida
-    let baldesMassa = 0;
-    if (massaCorrida) {
-        litrosTinta *= 1.15;
-        baldesMassa = Math.ceil(areaTotal / 20); // 1 balde de 25kg cobre 20m²
-    }
+    let latas36L = Math.ceil(tintaRestante / 3.6); 
 
-    // Cálculo de baldes de tinta (18L cada)
-    const baldesTinta = Math.ceil(litrosTinta / 18);
-    const baldesSelador = Math.ceil(litrosSelador / 18);
-
-    let mensagem = `
-        <h3>📌 Relatório de Materiais</h3>
-        <b>Área Total:</b> ${areaTotal.toFixed(2)} m²<br>
-        <b>Demãos:</b> ${demãos}<br>
-        <b>Tinta Necessária:</b> ${litrosTinta.toFixed(2)} L (${baldesTinta} baldes de 18L)<br>
+    let resultado = `
+        🔹 Relátorio
+        🔹 Área Total: ${areaTotal.toFixed(2)} m²
+        🔹 Litros de Tinta: ${totalTinta.toFixed(2)}L
+        🔹 Latas de Tinta Necessárias:
+            ${latas18L > 0 ? `🟢 ${latas18L} lata(s) de 18L` : ""}
+            ${latas36L > 0 ? `🟡 ${latas36L} lata(s) de 3.6L` : ""}
+        ${usarSelador ? `🔹 Selador Necessário: ${seladorNecessario.toFixed(2)}L` : ""}
     `;
 
-    if (tipoPintura === "repintura") {
-        mensagem += `<b>Selador Necessário:</b> ${litrosSelador.toFixed(2)} L (${baldesSelador} baldes de 18L)<br>`;
-    }
-
-    if (massaCorrida) {
-        mensagem += `<b>Massa Corrida:</b> ${baldesMassa} baldes de 25kg<br>`;
-    }
-
-    mensagem += `<h3>✔️ Etapas da Pintura</h3>`;
-
-    if (massaCorrida) mensagem += "✅ Aplicar massa corrida/gesso antes de pintar.<br>";
-    if (lixarParede) mensagem += "✅ Lixar a parede para melhor aderência.<br>";
-    if (limparParede) mensagem += "✅ Limpar a parede antes de pintar.<br>";
-
-    mensagem += "✅ Aplicar a tinta conforme o cálculo acima.<br>";
-
-    document.getElementById("resultado").innerHTML = mensagem;
+    document.getElementById("resultado").innerHTML = resultado.replace(/\n/g, "<br>");
 }
