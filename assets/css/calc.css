@@ -1,13 +1,3 @@
-/* Garante que a página não fique com rolagem lateral 
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  text-align: center;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-*/
-/* Estiliza a tabela */
 table {
   width: 100%;
   max-width: 500px;
@@ -15,21 +5,16 @@ table {
   border-collapse: collapse;
 }
 
-/* Ajusta as células da tabela */
 th, td {
   border: 1px solid black;
   padding: 8px;
   text-align: center;
 }
 
-/* Faz os inputs ocuparem toda a largura em telas pequenas */
-input {
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
+input, select {
+  margin: 5px;
 }
 
-/* Estiliza o botão */
 button {
   margin-top: 15px;
   padding: 10px;
@@ -41,10 +26,8 @@ button {
   max-width: 200px;
 }
 
-/* Responsividade para telas menores (até 600px) */
 @media (max-width: 600px) {
   table {
-      width: 100%;
       font-size: 14px;
   }
   
