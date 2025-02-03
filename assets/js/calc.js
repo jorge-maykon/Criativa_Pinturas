@@ -9,11 +9,10 @@ function gerarCampos() {
         let div = document.createElement("div");
         div.classList.add("form-row");
         div.innerHTML = `
-            <div class="form-group">
+            <div class="form-group1">
                 <label for="largura${i}">Largura ${i} (m)</label>
                 <input type="number" id="largura${i}" placeholder="Ex: 3">
-            </div>
-            <div class="form-group">
+            
                 <label for="altura${i}">Altura ${i} (m)</label>
                 <input type="number" id="altura${i}" placeholder="Ex: 2.5">
             </div>
@@ -57,7 +56,6 @@ function calcularMateriais() {
     let latas36L = Math.ceil(tintaRestante / 3.6); 
 
     let resultado = `
-        🔹 Relátorio
         🔹 Área Total: ${areaTotal.toFixed(2)} m²
         🔹 Litros de Tinta: ${totalTinta.toFixed(2)}L
         🔹 Latas de Tinta Necessárias:
