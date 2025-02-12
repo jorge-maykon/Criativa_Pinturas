@@ -38,6 +38,6 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
 ## Contato
 
-Seu Nome - [@seuusername](https://github.com/jorge-maykon) - jorge.maykonms@gmail.com
+Seu Nome - [@Jorge Maykon](https://github.com/jorge-maykon) - jorge.maykonms@gmail.com
 
 Link do Projeto: [https://github.com/jorge-maykon/Criativa_Pinturas]([https://github.com/seuusername/repositorio](https://github.com/jorge-maykon))
