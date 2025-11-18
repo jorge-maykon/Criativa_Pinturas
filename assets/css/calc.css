@@ -1,59 +1,50 @@
-/* Garante que a página não fique com rolagem lateral 
-body {
-  font-family: Arial, sans-serif;
-  margin: 20px;
+.container1 {
+  align-items: center;
+  background: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  max-width: 100%;
-  overflow-x: hidden;
-}
-*/
-/* Estiliza a tabela */
-table {
   width: 100%;
-  max-width: 500px;
-  margin: auto;
-  border-collapse: collapse;
 }
 
-/* Ajusta as células da tabela */
-th, td {
-  border: 1px solid black;
+.container1 div{
+  margin-bottom: 20px;
+}
+.form-group1 {
+  align-items: center;
+  width: 80%;
   padding: 8px;
-  text-align: center;
-}
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 
-/* Faz os inputs ocuparem toda a largura em telas pequenas */
-input {
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
 }
-
-/* Estiliza o botão */
+.form-group {
+  margin: 10px 0;
+}
+.form-group input, .form-group select {
+  width: 80%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
 button {
-  margin-top: 15px;
-  padding: 10px;
-  background-color: blue;
+  padding: 10px 20px;
+  background: #28a745;
   color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  width: 100%;
-  max-width: 200px;
+}
+button:hover {
+  background: #218838;
 }
 
-/* Responsividade para telas menores (até 600px) */
-@media (max-width: 600px) {
-  table {
-      width: 100%;
-      font-size: 14px;
-  }
+.form-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   
-  th, td {
-      padding: 5px;
-  }
-
-  button {
-      font-size: 14px;
-      padding: 8px;
-  }
 }

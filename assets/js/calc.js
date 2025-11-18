@@ -1,50 +1,68 @@
-function gerarTabela() {
-  const quantidade = parseInt(document.getElementById('quantidadeParedes').value) || 0;
-  const formulario = document.getElementById('formulario');
-  formulario.innerHTML = ''; // Limpa a tabela anterior
+function gerarCampos() {
+    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
+    let paredesContainer = document.getElementById("paredesContainer");
+    paredesContainer.innerHTML = "";  
 
-  if (quantidade > 0) {
-      let tabelaHTML = `
-          <table>
-              <tr>
-                  <th>Parede</th>
-                  <th>Largura (m)</th>
-                  <th>Altura (m)</th>
-              </tr>
-      `;
+    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) return;
 
-      for (let i = 1; i <= quantidade; i++) {
-          tabelaHTML += `
-              <tr>
-                  <td>${i}</td>
-                  <td><input type="number" id="largura${i}" step="0.1"></td>
-                  <td><input type="number" id="altura${i}" step="0.1"></td>
-              </tr>
-          `;
-      }
-
-      tabelaHTML += `
-          </table>
-          <button onclick="calcularTinta(${quantidade})">Calcular Tinta</button>
-      `;
-
-      formulario.innerHTML = tabelaHTML;
-  }
+    for (let i = 1; i <= quantidadeParedes; i++) {
+        let div = document.createElement("div");
+        div.classList.add("form-row");
+        div.innerHTML = `
+            <div class="form-group1">
+                <label for="largura${i}">Largura ${i} (m)</label>
+                <input type="number" id="largura${i}" placeholder="Ex: 3">
+            
+                <label for="altura${i}">Altura ${i} (m)</label>
+                <input type="number" id="altura${i}" placeholder="Ex: 2.5">
+            </div>
+        `;
+        paredesContainer.appendChild(div);
+    }
 }
 
-function calcularTinta(quantidade) {
-  let areaTotal = 0;
+function calcularMateriais() {
+    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
+    let tipoPintura = document.getElementById("tipoPintura").value;
+    let usarSelador = document.getElementById("usarSelador").checked;
+    
+    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) {
+        alert("Preencha o número de paredes corretamente!");
+        return;
+    }
 
-  for (let i = 1; i <= quantidade; i++) {
-      let largura = parseFloat(document.getElementById(`largura${i}`).value) || 0;
-      let altura = parseFloat(document.getElementById(`altura${i}`).value) || 0;
-      areaTotal += largura * altura;
-  }
+    let areaTotal = 0;
+    for (let i = 1; i <= quantidadeParedes; i++) {
+        let largura = parseFloat(document.getElementById(`largura${i}`).value);
+        let altura = parseFloat(document.getElementById(`altura${i}`).value);
 
-  const coberturaTinta = 5; // 1 litro cobre 5m²
-  const litrosNecessarios = areaTotal / coberturaTinta;
-  const baldes = Math.ceil(litrosNecessarios / 18); // Balde tem 18 litros
+        if (isNaN(largura) || isNaN(altura)) {
+            alert(`Preencha corretamente os valores da parede ${i}!`);
+            return;
+        }
 
-  document.getElementById("resultado").innerText = 
-      `Área Total: ${areaTotal.toFixed(2)} m² | Tinta Necessária: ${litrosNecessarios.toFixed(2)} L | Baldes de 18L: ${baldes}`;
+        areaTotal += largura * altura;
+    }
+
+    let rendimentoTinta = tipoPintura === "nova" ? 5 : 7;  
+    let totalTinta = areaTotal / rendimentoTinta;
+
+    let seladorNecessario = usarSelador ? areaTotal / 10 : 0;  
+
+    let tintaRestante = totalTinta;
+    let latas18L = Math.floor(tintaRestante / 18);
+    tintaRestante -= latas18L * 18;
+
+    let latas36L = Math.ceil(tintaRestante / 3.6); 
+
+    let resultado = `
+        🔹 Área Total: ${areaTotal.toFixed(2)} m²
+        🔹 Litros de Tinta: ${totalTinta.toFixed(2)}L
+        🔹 Latas de Tinta Necessárias:
+            ${latas18L > 0 ? `🟢 ${latas18L} lata(s) de 18L` : ""}
+            ${latas36L > 0 ? `🟡 ${latas36L} lata(s) de 3.6L` : ""}
+        ${usarSelador ? `🔹 Selador Necessário: ${seladorNecessario.toFixed(2)}L` : ""}
+    `;
+
+    document.getElementById("resultado").innerHTML = resultado.replace(/\n/g, "<br>");
 }
