@@ -38,6 +38,7 @@
           <li><a href="index.html#portfolio">Portfolio</a></li>
           <li><a href="index.html#pricing">Produtos</a></li>
           <li><a href="index.html#team">Time</a></li>
+          <li><a href="index.html#calc">Calculadora</a></li>
           <li><a href="index.html#contact">Contato</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -468,7 +469,7 @@
     <!-- /Team Section -->
     <!-- Call To Action Section -->
 
-    <section class="calculadora">
+    <section class="calculadora" id="Calc">
       <h2>Calculadora de Materiais para Pintura</h2>
 
       <form id="formCalc">
@@ -492,8 +493,22 @@
 
         <button type="submit">Calcular</button>
       </form>
+    </section>
 
-      <div id="resultado"></div>
+    <!-- Resultado com Carrossel -->
+    <section class="resultado" id="resultadoSection" style="display: none;">
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide" id="slideResumo"></div>
+          <div class="swiper-slide" id="slideRecomendacoes"></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="botoes-controle">
+        <button onclick="mostrarFormulario()">Cálculo</button>
+        <button onclick="swiper.slideTo(0)">Resumo</button>
+      </div>
     </section>
 
     <!-- /Call To Action Section -->

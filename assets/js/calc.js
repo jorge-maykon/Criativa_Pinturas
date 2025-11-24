@@ -1,3 +1,10 @@
+const swiper = new Swiper('.swiper', {
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  }
+});
+
 document.getElementById('numParedes').addEventListener('change', function() {
   const num = parseInt(this.value);
   const container = document.getElementById('paredesContainer');
@@ -16,7 +23,7 @@ document.getElementById('numParedes').addEventListener('change', function() {
 
 document.getElementById('formCalc').addEventListener('submit', function(e) {
   e.preventDefault();
-  
+
   const alturas = document.querySelectorAll('.altura');
   const larguras = document.querySelectorAll('.largura');
   const aberturas = document.querySelectorAll('.abertura');
@@ -40,22 +47,37 @@ document.getElementById('formCalc').addEventListener('submit', function(e) {
   const selador = tipo === 'nova' ? (areaTotal / 12) * fatorPatologia : 0;
   const lixa = areaTotal / 8;
 
-  let recomendacoes = "";
-  patologias.forEach(p => {
-    if (p.value === "infiltracao") recomendacoes += "<li>Use impermeabilizante</li>";
-    if (p.value === "mofo") recomendacoes += "<li>Use fungicida antes de pintar</li>";
-    if (p.value === "descascando") recomendacoes += "<li>Raspar e aplicar fundo preparador</li>";
-  });
-
-  document.getElementById('resultado').innerHTML = `
-    <h4>Resumo:</h4>
-    <p><strong>Área total:</strong> ${areaTotal.toFixed(2)} m²</p>
+  // Slide 1 - Resumo
+  document.getElementById('slideResumo').innerHTML = `
+    <h3>Resumo</h3>
     <ul>
+      <li><strong>Área total:</strong> ${areaTotal.toFixed(2)} m²</li>
       <li><strong>Tinta:</strong> ${Math.ceil(tinta)} litros</li>
       <li><strong>Massa Corrida:</strong> ${Math.ceil(massa)} sacos</li>
       <li><strong>Selador:</strong> ${Math.ceil(selador)} litros</li>
       <li><strong>Lixa:</strong> ${Math.ceil(lixa)} unidades</li>
     </ul>
-    ${recomendacoes ? `<p><strong>Recomendações:</strong></p><ul>${recomendacoes}</ul>` : ''}
   `;
+
+  // Slide 2 - Recomendações
+  let recomendacoes = "";
+  patologias.forEach(p => {
+    if (p.value === "infiltracao") recomendacoes += "<li>✔️ Recomendamos impermeabilizante</li>";
+    if (p.value === "mofo") recomendacoes += "<li>✔️ Usar fungicida antes da pintura</li>";
+    if (p.value === "descascando") recomendacoes += "<li>✔️ Raspar e aplicar fundo preparador</li>";
+  });
+
+  document.getElementById('slideRecomendacoes').innerHTML = `
+    <h3>Recomendações</h3>
+    <ul>${recomendacoes || "<li>Sem recomendações extras</li>"}</ul>
+  `;
+
+  document.getElementById('formularioSection').style.display = 'none';
+  document.getElementById('resultadoSection').style.display = 'block';
+  swiper.slideTo(0);
 });
+
+function mostrarFormulario() {
+  document.getElementById('formularioSection').style.display = 'block';
+  document.getElementById('resultadoSection').style.display = 'none';
+}
