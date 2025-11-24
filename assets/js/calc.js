@@ -1,68 +1,61 @@
-function gerarCampos() {
-    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
-    let paredesContainer = document.getElementById("paredesContainer");
-    paredesContainer.innerHTML = "";  
-
-    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) return;
-
-    for (let i = 1; i <= quantidadeParedes; i++) {
-        let div = document.createElement("div");
-        div.classList.add("form-row");
-        div.innerHTML = `
-            <div class="form-group1">
-                <label for="largura${i}">Largura ${i} (m)</label>
-                <input type="number" id="largura${i}" placeholder="Ex: 3">
-            
-                <label for="altura${i}">Altura ${i} (m)</label>
-                <input type="number" id="altura${i}" placeholder="Ex: 2.5">
-            </div>
-        `;
-        paredesContainer.appendChild(div);
-    }
-}
-
-function calcularMateriais() {
-    let quantidadeParedes = parseInt(document.getElementById("quantidadeParedes").value);
-    let tipoPintura = document.getElementById("tipoPintura").value;
-    let usarSelador = document.getElementById("usarSelador").checked;
-    
-    if (isNaN(quantidadeParedes) || quantidadeParedes <= 0) {
-        alert("Preencha o número de paredes corretamente!");
-        return;
-    }
-
-    let areaTotal = 0;
-    for (let i = 1; i <= quantidadeParedes; i++) {
-        let largura = parseFloat(document.getElementById(`largura${i}`).value);
-        let altura = parseFloat(document.getElementById(`altura${i}`).value);
-
-        if (isNaN(largura) || isNaN(altura)) {
-            alert(`Preencha corretamente os valores da parede ${i}!`);
-            return;
-        }
-
-        areaTotal += largura * altura;
-    }
-
-    let rendimentoTinta = tipoPintura === "nova" ? 5 : 7;  
-    let totalTinta = areaTotal / rendimentoTinta;
-
-    let seladorNecessario = usarSelador ? areaTotal / 10 : 0;  
-
-    let tintaRestante = totalTinta;
-    let latas18L = Math.floor(tintaRestante / 18);
-    tintaRestante -= latas18L * 18;
-
-    let latas36L = Math.ceil(tintaRestante / 3.6); 
-
-    let resultado = `
-        🔹 Área Total: ${areaTotal.toFixed(2)} m²
-        🔹 Litros de Tinta: ${totalTinta.toFixed(2)}L
-        🔹 Latas de Tinta Necessárias:
-            ${latas18L > 0 ? `🟢 ${latas18L} lata(s) de 18L` : ""}
-            ${latas36L > 0 ? `🟡 ${latas36L} lata(s) de 3.6L` : ""}
-        ${usarSelador ? `🔹 Selador Necessário: ${seladorNecessario.toFixed(2)}L` : ""}
+document.getElementById('numParedes').addEventListener('change', function() {
+  const num = parseInt(this.value);
+  const container = document.getElementById('paredesContainer');
+  container.innerHTML = '';
+  for (let i = 1; i <= num; i++) {
+    container.innerHTML += `
+      <fieldset>
+        <legend>Parede ${i}</legend>
+        Altura (m): <input type="number" class="altura" step="0.1" required><br>
+        Largura (m): <input type="number" class="largura" step="0.1" required><br>
+        Área de portas/janelas (m²): <input type="number" class="abertura" step="0.1" value="0"><br>
+      </fieldset>
     `;
+  }
+});
 
-    document.getElementById("resultado").innerHTML = resultado.replace(/\n/g, "<br>");
-}
+document.getElementById('formCalc').addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const alturas = document.querySelectorAll('.altura');
+  const larguras = document.querySelectorAll('.largura');
+  const aberturas = document.querySelectorAll('.abertura');
+
+  let areaTotal = 0;
+
+  for (let i = 0; i < alturas.length; i++) {
+    const h = parseFloat(alturas[i].value);
+    const w = parseFloat(larguras[i].value);
+    const abertura = parseFloat(aberturas[i].value);
+    const area = h * w - abertura;
+    areaTotal += area > 0 ? area : 0;
+  }
+
+  const tipo = document.querySelector('input[name="tipoPintura"]:checked').value;
+  const patologias = document.querySelectorAll('.patologia:checked');
+  const fatorPatologia = patologias.length > 0 ? 1.2 : 1;
+
+  const tinta = (areaTotal / 5) * fatorPatologia;
+  const massa = tipo === 'nova' ? (areaTotal / 15) * fatorPatologia : 0;
+  const selador = tipo === 'nova' ? (areaTotal / 12) * fatorPatologia : 0;
+  const lixa = areaTotal / 8;
+
+  let recomendacoes = "";
+  patologias.forEach(p => {
+    if (p.value === "infiltracao") recomendacoes += "<li>Use impermeabilizante</li>";
+    if (p.value === "mofo") recomendacoes += "<li>Use fungicida antes de pintar</li>";
+    if (p.value === "descascando") recomendacoes += "<li>Raspar e aplicar fundo preparador</li>";
+  });
+
+  document.getElementById('resultado').innerHTML = `
+    <h4>Resumo:</h4>
+    <p><strong>Área total:</strong> ${areaTotal.toFixed(2)} m²</p>
+    <ul>
+      <li><strong>Tinta:</strong> ${Math.ceil(tinta)} litros</li>
+      <li><strong>Massa Corrida:</strong> ${Math.ceil(massa)} sacos</li>
+      <li><strong>Selador:</strong> ${Math.ceil(selador)} litros</li>
+      <li><strong>Lixa:</strong> ${Math.ceil(lixa)} unidades</li>
+    </ul>
+    ${recomendacoes ? `<p><strong>Recomendações:</strong></p><ul>${recomendacoes}</ul>` : ''}
+  `;
+});
