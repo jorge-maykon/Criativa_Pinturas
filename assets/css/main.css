@@ -879,12 +879,16 @@ section,
   margin: 0;
   font-size: 44px;
   font-weight: 700;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .hero p {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin: 5px 0 0 0;
   font-size: 20px;
+  color: white;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .hero .sign-up-form {
