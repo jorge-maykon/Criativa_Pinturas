@@ -1,104 +1,108 @@
 # Criativa Pinturas 🎨
 
-## Visão geral
-
-**Criativa Pinturas** é um site institucional para uma empresa de pintura residencial e comercial. O objetivo é apresentar os serviços oferecidos, galeria de projetos, informações de contato e permitir que clientes potenciais solicitem orçamentos de forma simples e direta.
-
-O site foi desenvolvido com **HTML5, CSS3 e JavaScript (vanilla)**, mantendo foco em performance, responsividade e boa experiência de usuário.
+Site institucional para a empresa **Criativa Pinturas**, especializada em pintura residencial, comercial e predial.  
+O objetivo é apresentar os serviços, portfólio de projetos e permitir que clientes entrem em contato para solicitar orçamentos de forma prática e eficiente.
 
 ---
 
-## Funcionalidades principais
+## 📌 Funcionalidades (implementadas e previstas)
 
-- Página inicial com destaque para os serviços principais.  
-- Seção “Serviços” com descrição de cada tipo de pintura (residencial, comercial, fachadas, retoques, etc.).  
-- **Galeria de projetos**: slider ou grid mostrando imagens de obras concluídas para demonstrar portfólio.  
-- Formulário de **solicitação de orçamento / contato** com campos para nome, e-mail, telefone e mensagem / breve descrição do trabalho.  
-- Seção “Sobre nós” com histórico da empresa, valores e diferenciais.  
-- Seção de **testemunhos / depoimentos de clientes** (opcional).  
-- Layout responsivo, adaptável a dispositivos móveis, tablets e desktops.  
-- SEO básico (meta tags, estrutura semântica, alt nas imagens).  
+- Página inicial com apresentação dos principais serviços
+- Seção "Sobre nós" com informações da empresa
+- Galeria de projetos realizados
+- Formulário de contato e orçamento
+- Responsividade para dispositivos móveis
+- Otimização básica para motores de busca (SEO)
+- Design limpo e moderno
+- Mapa com localização da empresa (opcional)
+- Integração com WhatsApp ou e-mail para atendimento direto (opcional)
 
----
-
-## Stack / Tecnologias utilizadas
-
-- **HTML5** — marcação semântica  
-- **CSS3** — estilos, responsividade, layout flexbox/grid, design mobile-first  
-- **JavaScript (ES6+)** — interatividade (ex: galeria, validação de formulário)  
-- (Opcional) **Pré-processadores / ferramentas**: Sass / PostCSS / Autoprefixer (se desejado)  
-- (Opcional) **Build / bundler**: npm + scripts de build, ou bundlers como webpack / vite — dependendo da complexidade do projeto  
+> ⚠️ O site está em constante melhoria — novas seções ou funcionalidades podem ser adicionadas conforme demanda.
 
 ---
 
-## Estrutura de pastas (sugestão)
+## 🛠 Stack Utilizada
 
-/ (root)
-│ index.html
-│ contato.html # página de contato / orçamento
-│ styles/ # estilos CSS ou SCSS
-│ └── main.css
-│ scripts/ # JS
-│ └── main.js
-│ images/ # imagens / galeria / logos
-│ assets/ # fonts, ícones, etc.
-│ (opcional) data/ # se usar JSON para portfólio/testemunhos
+- **Frontend:** HTML5 + CSS3 + JavaScript (Vanilla)
+- **Estilo:** Flexbox/Grid + Media Queries
+- **Interatividade:** JavaScript puro (formulários, sliders, menus)
+- **Hospedagem sugerida:** GitHub Pages, Netlify, Vercel ou hospedagem tradicional
+- (Opcional) Biblioteca de ícones: Font Awesome
+- (Opcional) Framework CSS: Bootstrap (se utilizado)
+- (Opcional) Pré-processador: Sass/SCSS
+
+---
+
+## ✅ Requisitos
+
+Para editar ou rodar o projeto localmente:
+
+- Navegador moderno (Chrome, Firefox, etc.)
+- Editor de código (VS Code recomendado)
+- Servidor local opcional: Live Server, http-server, etc.
+
+---
+
+## 🚀 Como rodar o projeto localmente
+
+### 1. Clonar o repositório
+
+git clone https://github.com/seu-usuario/criativa-pinturas.git
+cd criativa-pinturas
+
+2. Abrir o projeto
+
+Você pode abrir o arquivo index.html diretamente no navegador, ou usar uma extensão como Live Server para melhor experiência de desenvolvimento.
+📂 Estrutura do Projeto
+
+criativa-pinturas/
+│
+├── index.html               # Página inicial
+├── sobre.html               # Sobre a empresa
+├── servicos.html            # Lista de serviços
+├── contato.html             # Formulário de contato
+│
+├── /styles
+│   └── style.css            # Estilo principal do site
+│
+├── /scripts
+│   └── main.js              # Scripts JS (menu, form, etc.)
+│
+├── /images
+│   └── ...                  # Imagens da galeria e do site
+│
 └── README.md
 
+👨‍💻 Como contribuir
 
----
+    Faça um fork do repositório
 
-## Como rodar / instalar (modo de desenvolvimento)
+    Crie uma nova branch para sua feature ou correção:
 
-1. Clone este repositório:
+git checkout -b minha-melhoria
 
-   ```bash
-   git clone https://github.com/seu-usuario/criativa-pinturas.git
-   cd criativa-pinturas
+    Commit suas mudanças:
 
-    (Se usar ferramentas de build) Instale dependências:
+git commit -m "Melhoria: ajuste na galeria de fotos"
 
-npm install
+    Envie para o repositório:
 
-Abra o arquivo index.html em seu navegador — ou, se estiver usando servidor de desenvolvimento, rode:
+git push origin minha-melhoria
 
-npm start
+    Abra um Pull Request
 
-Modifique os arquivos em styles/, scripts/, images/ conforme necessário. As mudanças serão refletidas no navegador (dependendo da configuração de “live reload”).
+📝 Licença
 
-Para produção, gere os arquivos finais (minificados/comprimidos) com:
+Este projeto está licenciado sob a MIT License.
+Você pode usar, copiar, modificar e distribuir conforme sua necessidade.
+📣 Contato
 
-    npm run build
+Caso tenha dúvidas ou sugestões:
 
-    E então faça deploy dos arquivos estáticos (ex: via GitHub Pages, Netlify, Vercel, ou hospedagem própria).
+    Autor: [Jorge Maykon]
 
-Como contribuir
+    Email: jorge.maykonms@gmail.com
 
-Contribuições são bem-vindas! Se você quiser sugerir melhorias, adicionar novos recursos ou corrigir bugs:
+    GitHub: [jorge-maykon]
 
-    Fork este repositório.
-
-    Crie uma branch para sua modificação (git checkout -b feature/nova-coisa).
-
-    Faça suas alterações.
-
-    Envie um pull request descrevendo as melhorias realizadas.
-
-Boas práticas recomendadas
-
-    Utilizar CSS modular ou BEM para organizar estilos e evitar conflitos.
-
-    Garantir acessibilidade (a11y): uso correto de <alt> em imagens, labels em formulários, contraste de cores adequado.
-
-    Otimização de imagens para web (compressão, uso do formato adequado) para manter boa performance.
-
-    Validação do formulário de orçamento — tanto no front‑end (JS) quanto, se houver backend, no servidor.
-
-    Testes de compatibilidade nos principais navegadores (Chrome, Firefox, Safari, Edge) e dispositivos móveis.
-
-Licença
-
-Este projeto está licenciado sob a MIT License — sinta-se livre para usar, modificar e distribuir conforme seus interesses.
-Contato
-
-Para dúvidas, sugestões ou solicitar um orçamento personalizado — entre em contato via e-mail: contato@criativapinturas.com.br
+    Feito com 💙 por Criativa Pinturas
