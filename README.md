@@ -1,168 +1,104 @@
-# Agendamento_saude
+# Criativa Pinturas 🎨
 
-Sistema web para **agendamento de consultas na área da saúde**, pensado para organizar horários, pacientes e profissionais de forma simples.  
-O objetivo é facilitar o fluxo de marcação, consulta e gestão de atendimentos em clínicas, unidades básicas de saúde ou pequenas equipes.
+## Visão geral
 
----
+**Criativa Pinturas** é um site institucional para uma empresa de pintura residencial e comercial. O objetivo é apresentar os serviços oferecidos, galeria de projetos, informações de contato e permitir que clientes potenciais solicitem orçamentos de forma simples e direta.
 
-## 📌 Funcionalidades (previstas / em desenvolvimento)
-
-- Cadastro e autenticação de usuários (login/logout)
-- Painel inicial (dashboard) pós-login
-- Cadastro de pacientes
-- Cadastro de profissionais de saúde
-- Agendamento de consultas
-- Listagem de horários disponíveis
-- Visualização de agenda do dia/semana
-- Controle básico de status do atendimento (agendado, concluído, cancelado)
-- Relatórios simples (em desenvolvimento)
-
-> Observação: Como o projeto está em construção, algumas funcionalidades podem ainda não estar totalmente implementadas.
+O site foi desenvolvido com **HTML5, CSS3 e JavaScript (vanilla)**, mantendo foco em performance, responsividade e boa experiência de usuário.
 
 ---
 
-## 🛠 Stack Utilizada
+## Funcionalidades principais
 
-- **Backend:** Laravel (PHP)
-- **Frontend:** Inertia.js + (Blade/React/Vue conforme configuração do projeto)
-- **Banco de Dados:** MySQL
-- **Gerenciador de Dependências PHP:** Composer
-- **Gerenciador de Dependências Frontend:** NPM
-- **Servidor de desenvolvimento:** Artisan (`php artisan serve`)
-- **Controle de versão:** Git + GitHub
-
----
-
-## ✅ Requisitos
-
-Antes de rodar o projeto, tenha instalado na sua máquina:
-
-- [PHP](https://www.php.net/) (versão compatível com a do Laravel utilizado)
-- [Composer](https://getcomposer.org/)
-- [Node.js e NPM](https://nodejs.org/)
-- [MySQL](https://www.mysql.com/) (ou outro banco configurado no `.env`)
-- [Git](https://git-scm.com/)
-- Extensão do PHP `pdo_mysql` habilitada
+- Página inicial com destaque para os serviços principais.  
+- Seção “Serviços” com descrição de cada tipo de pintura (residencial, comercial, fachadas, retoques, etc.).  
+- **Galeria de projetos**: slider ou grid mostrando imagens de obras concluídas para demonstrar portfólio.  
+- Formulário de **solicitação de orçamento / contato** com campos para nome, e-mail, telefone e mensagem / breve descrição do trabalho.  
+- Seção “Sobre nós” com histórico da empresa, valores e diferenciais.  
+- Seção de **testemunhos / depoimentos de clientes** (opcional).  
+- Layout responsivo, adaptável a dispositivos móveis, tablets e desktops.  
+- SEO básico (meta tags, estrutura semântica, alt nas imagens).  
 
 ---
 
-## 🚀 Como rodar o projeto localmente
+## Stack / Tecnologias utilizadas
 
-### 1. Clonar o repositório
+- **HTML5** — marcação semântica  
+- **CSS3** — estilos, responsividade, layout flexbox/grid, design mobile-first  
+- **JavaScript (ES6+)** — interatividade (ex: galeria, validação de formulário)  
+- (Opcional) **Pré-processadores / ferramentas**: Sass / PostCSS / Autoprefixer (se desejado)  
+- (Opcional) **Build / bundler**: npm + scripts de build, ou bundlers como webpack / vite — dependendo da complexidade do projeto  
 
-git clone https://github.com/jorge-maykon/Agendamento_saude.git
-cd Agendamento_saude
+---
 
-2. Instalar dependências do PHP (Laravel)
+## Estrutura de pastas (sugestão)
 
-composer install
+/ (root)
+│ index.html
+│ contato.html # página de contato / orçamento
+│ styles/ # estilos CSS ou SCSS
+│ └── main.css
+│ scripts/ # JS
+│ └── main.js
+│ images/ # imagens / galeria / logos
+│ assets/ # fonts, ícones, etc.
+│ (opcional) data/ # se usar JSON para portfólio/testemunhos
+└── README.md
 
-3. Instalar dependências do frontend
+
+---
+
+## Como rodar / instalar (modo de desenvolvimento)
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/seu-usuario/criativa-pinturas.git
+   cd criativa-pinturas
+
+    (Se usar ferramentas de build) Instale dependências:
 
 npm install
 
-4. Configurar o arquivo .env
+Abra o arquivo index.html em seu navegador — ou, se estiver usando servidor de desenvolvimento, rode:
 
-    Copie o arquivo de exemplo:
+npm start
 
-cp .env.example .env
+Modifique os arquivos em styles/, scripts/, images/ conforme necessário. As mudanças serão refletidas no navegador (dependendo da configuração de “live reload”).
 
-    Edite o .env e configure principalmente:
+Para produção, gere os arquivos finais (minificados/comprimidos) com:
 
-APP_NAME="Agendamento_saude"
-APP_ENV=local
-APP_KEY=
-APP_DEBUG=true
-APP_URL=http://localhost
+    npm run build
 
-# Configurações do banco
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=agendamento_saude
-DB_USERNAME=seu_usuario
-DB_PASSWORD=sua_senha
+    E então faça deploy dos arquivos estáticos (ex: via GitHub Pages, Netlify, Vercel, ou hospedagem própria).
 
-Crie o banco de dados no MySQL com o mesmo nome definido em DB_DATABASE.
-5. Gerar a chave da aplicação
+Como contribuir
 
-php artisan key:generate
+Contribuições são bem-vindas! Se você quiser sugerir melhorias, adicionar novos recursos ou corrigir bugs:
 
-6. Rodar migrações (e seeds, se existirem)
+    Fork este repositório.
 
-php artisan migrate
-# Se tiver seeds:
-# php artisan db:seed
+    Crie uma branch para sua modificação (git checkout -b feature/nova-coisa).
 
-7. Subir o servidor backend (Laravel)
+    Faça suas alterações.
 
-php artisan serve
+    Envie um pull request descrevendo as melhorias realizadas.
 
-O Laravel, por padrão, estará em:
-http://127.0.0.1:8000 ou http://localhost:8000
-8. Rodar o build do frontend
+Boas práticas recomendadas
 
-Para desenvolvimento:
+    Utilizar CSS modular ou BEM para organizar estilos e evitar conflitos.
 
-npm run dev
+    Garantir acessibilidade (a11y): uso correto de <alt> em imagens, labels em formulários, contraste de cores adequado.
 
-Ou, se estiver usando Vite com hot reload:
+    Otimização de imagens para web (compressão, uso do formato adequado) para manter boa performance.
 
-npm run dev
-# e acesse a URL do Laravel normalmente
+    Validação do formulário de orçamento — tanto no front‑end (JS) quanto, se houver backend, no servidor.
 
-Para produção:
+    Testes de compatibilidade nos principais navegadores (Chrome, Firefox, Safari, Edge) e dispositivos móveis.
 
-npm run build
+Licença
 
-📂 Estrutura básica do projeto
+Este projeto está licenciado sob a MIT License — sinta-se livre para usar, modificar e distribuir conforme seus interesses.
+Contato
 
-Algumas pastas importantes:
-
-    app/ – Código principal do backend (Laravel)
-
-    routes/ – Arquivos de rotas (web, api, etc.)
-
-    resources/views – Views Blade / layouts
-
-    resources/js – Arquivos JS/TS para Inertia (páginas, componentes)
-
-    database/migrations – Migrações do banco de dados
-
-    public/ – Pasta pública (assets, index.php)
-
-    config/ – Arquivos de configuração do Laravel
-
-👨‍💻 Como contribuir
-
-    Faça um fork do repositório
-
-    Crie uma branch para sua feature/correção:
-
-git checkout -b minha-feature
-
-Faça seus commits:
-
-git commit -m "Descrição da alteração"
-
-Envie sua branch:
-
-    git push origin minha-feature
-
-    Abra um Pull Request neste repositório
-
-📝 Licença
-
-Defina aqui a licença do projeto (por exemplo, MIT, GPL, etc.).
-
-Exemplo:
-
-Este projeto está licenciado sob a licença MIT.
-Sinta-se à vontade para usar, estudar e melhorar o código.
-📣 Contato
-
-Caso queira entrar em contato para dúvidas, sugestões ou melhorias:
-
-    Autor: Jorge Maykon
-
-    GitHub: @jorge-maykon
+Para dúvidas, sugestões ou solicitar um orçamento personalizado — entre em contato via e-mail: contato@criativapinturas.com.br
