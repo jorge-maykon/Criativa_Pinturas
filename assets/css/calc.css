@@ -1,52 +1,282 @@
+/* ===========================
+   Calculadora de Materiais
+   Estilo inspirado na Suvinil
+   =========================== */
 
 .calculadora {
-  max-width: 900px;
-  margin: auto;
-  background: white;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  padding: 80px 0;
+  background: #f8fafc;
 }
 
-
-form label, fieldset {
-  display: block;
-  margin-bottom: 15px;
+.calculadora .calc-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 32px 24px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-input[type="number"] {
-  padding: 8px;
+@media (min-width: 992px) {
+  .calculadora .calc-card {
+    padding: 40px 36px;
+  }
+}
+
+.calculadora .calc-header {
+  margin-bottom: 24px;
+}
+
+.calculadora .calc-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.calculadora .calc-subtitle {
+  margin-bottom: 0;
+  color: #64748b;
+}
+
+.calculadora .calc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #0f172a;
+  background: #e0f2fe;
+  border-radius: 999px;
+  padding: 4px 12px;
+  margin-bottom: 12px;
+}
+
+.calculadora .calc-badge::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #0ea5e9;
+}
+
+/* Seletor de tipo de calculadora */
+
+.calculadora .calc-type-selector {
+  margin-bottom: 8px;
+}
+
+.calculadora .calc-type-card {
   width: 100%;
-  margin-top: 5px;
-}
-
-fieldset {
-  border: 1px solid #ddd;
-  padding: 15px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-
-button {
-  padding: 12px 24px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
-}
-
-button:hover {
-  background: #0056b3;
-}
-
-.botoes-controle {
-  margin-top: 30px;
+  border-radius: 16px;
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  padding: 14px 16px;
+  background: #f9fafb;
   display: flex;
-  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.swiper-slide {
-  padding: 20px;
+.calculadora .calc-type-card-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.calculadora .calc-type-card-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 2px;
+}
+
+.calculadora .calc-type-card-text {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.calculadora .calc-type-card small {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.calculadora .calc-type-card.active {
+  border-color: #0ea5e9;
+  background: #e0f2fe;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.calculadora .calc-type-card:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
+}
+
+/* Formulários das calculadoras */
+
+.calculadora .calc-form .form-label {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.calculadora .form-text {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.calculadora .calc-fieldset {
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 16px;
+  padding: 12px 16px 16px;
+  background: #f9fafb;
+}
+
+.calculadora .calc-fieldset legend {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0 8px;
+  margin-bottom: 8px;
+  color: #0f172a;
+}
+
+.calculadora .calc-fieldset .form-check {
+  margin-bottom: 6px;
+}
+
+.calculadora .calc-fieldset .form-check-label {
+  font-size: 0.9rem;
+}
+
+.calculadora .paredes-container {
+  display: grid;
+  gap: 8px;
+}
+
+/* Em telas médias, exibe 2 colunas de campos de medida */
+@media (min-width: 768px) {
+  .calculadora .paredes-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.calculadora .calc-footer .badge {
+  font-weight: 500;
+}
+
+.calculadora .calc-footer .btn {
+  min-width: 220px;
+}
+
+/* Controle de visibilidade das calculadoras */
+
+.calculadora .calc-form-wrapper {
+  display: none;
+}
+
+.calculadora .calc-form-wrapper.active {
+  display: block;
+}
+
+/* ===========================
+   Resultado da Calculadora
+   =========================== */
+
+.resultado.section {
+  padding-top: 0;
+  padding-bottom: 80px;
+  background: #f8fafc;
+}
+
+.resultado .resultado-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+@media (min-width: 992px) {
+  .resultado .resultado-card {
+    padding: 32px 28px 28px;
+  }
+}
+
+.resultado .calc-eyebrow {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.resultado .calc-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.resultado .swiper {
+  border-radius: 16px;
+  background: #f9fafb;
+  padding: 16px;
+  margin-top: 4px;
+}
+
+.resultado .swiper-pagination-bullet {
+  background: #0f172a;
+  opacity: 0.3;
+}
+
+.resultado .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+.resultado .result-note {
+  color: #94a3b8;
+}
+
+/* Botões do resultado com presença maior */
+.resultado .botoes-controle .btn {
+  font-weight: 600;
+}
+
+/* Ajuste visual dos blocos de texto dentro do resultado */
+.resultado .testimonial-item h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.resultado .testimonial-item p,
+.resultado .testimonial-item li {
+  font-size: 0.95rem;
+  color: #475569;
+}
+
+/* ===========================
+   Wizard de passos
+   =========================== */
+
+.calculadora .calc-wizard {
+  margin-top: 16px;
+}
+
+.calculadora .calc-step {
+  display: none;
+}
+
+.calculadora .calc-step-selector {
+  display: block;
+}
+
+.calculadora .calc-type-flow {
+  display: none;
+}
+
+.calculadora .calc-step-indicador {
+  font-size: 0.8rem;
+  color: #94a3b8;
 }
