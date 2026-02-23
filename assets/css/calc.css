@@ -41,7 +41,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.75rem;
+  font-size: 1.25rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #0f172a;
@@ -211,6 +211,7 @@
   letter-spacing: 0.08em;
   color: #64748b;
 }
+
 
 .resultado .calc-title {
   font-size: 1.6rem;
