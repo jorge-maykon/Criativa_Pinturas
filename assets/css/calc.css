@@ -1,17 +1,6 @@
 /* ===========================
    Calculadora de Materiais
-   Estilo inspirado na Suvinil
    =========================== */
-
-.aloc{
-  justify-content: center;
-}
-
-.B-medida {
-  background-color: #e0f2fe;;
-  border-radius: 5px;
-  padding: 10px;
-}
 
 .calculadora {
   padding: 80px 0;
@@ -32,7 +21,7 @@
 }
 
 .calculadora .calc-header {
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .calculadora .calc-title {
@@ -51,7 +40,7 @@
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 1.25rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #0f172a;
@@ -72,6 +61,7 @@
 /* Seletor de tipo de calculadora */
 
 .calculadora .calc-type-selector {
+  margin-top: 8px;
   margin-bottom: 8px;
 }
 
@@ -167,7 +157,6 @@
   gap: 8px;
 }
 
-/* Em telas médias, exibe 2 colunas de campos de medida */
 @media (min-width: 768px) {
   .calculadora .paredes-container {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -182,36 +171,73 @@
   min-width: 220px;
 }
 
-/* Controle de visibilidade das calculadoras */
+/* Wizard de passos */
 
-.calculadora .calc-form-wrapper {
+.calculadora .calc-wizard {
+  margin-top: 16px;
+}
+
+.calculadora .calc-step {
   display: none;
 }
 
-.calculadora .calc-form-wrapper.active {
+.calculadora .calc-step-selector {
   display: block;
+}
+
+.calculadora .calc-type-flow {
+  display: none;
+}
+
+.calculadora .calc-step-indicador {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+/* Painel azul da pergunta principal */
+
+.calculadora .calc-step-panel {
+  background: #e0f2fe;
+  border-radius: 12px;
+  padding: 12px 14px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.calculadora .calc-step-mini {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #1e293b;
+  margin-bottom: 4px;
+}
+
+.calculadora .calc-step-panel .form-text {
+  font-size: 0.78rem;
+  color: #64748b;
 }
 
 /* ===========================
    Resultado da Calculadora
    =========================== */
 
-.resultado.section {
-  padding-top: 0;
-  padding-bottom: 80px;
-  background: #f8fafc;
+.calculadora .calc-resultado {
+  margin-top: 24px;
 }
 
-.resultado .resultado-card {
+.calculadora .calc-resultado .resultado-card {
   background: #ffffff;
   border-radius: 24px;
-  padding: 28px 24px 24px;
+  padding: 24px 20px 20px;
   border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
 @media (min-width: 992px) {
-  .resultado .resultado-card {
-    padding: 32px 28px 28px;
+  .calculadora .calc-resultado .resultado-card {
+    padding: 28px 24px 24px;
   }
 }
 
@@ -221,7 +247,6 @@
   letter-spacing: 0.08em;
   color: #64748b;
 }
-
 
 .resultado .calc-title {
   font-size: 1.6rem;
@@ -249,12 +274,10 @@
   color: #94a3b8;
 }
 
-/* Botões do resultado com presença maior */
 .resultado .botoes-controle .btn {
   font-weight: 600;
 }
 
-/* Ajuste visual dos blocos de texto dentro do resultado */
 .resultado .testimonial-item h4 {
   font-size: 1.1rem;
   font-weight: 600;
@@ -265,29 +288,4 @@
 .resultado .testimonial-item li {
   font-size: 0.95rem;
   color: #475569;
-}
-
-/* ===========================
-   Wizard de passos
-   =========================== */
-
-.calculadora .calc-wizard {
-  margin-top: 16px;
-}
-
-.calculadora .calc-step {
-  display: none;
-}
-
-.calculadora .calc-step-selector {
-  display: block;
-}
-
-.calculadora .calc-type-flow {
-  display: none;
-}
-
-.calculadora .calc-step-indicador {
-  font-size: 0.8rem;
-  color: #94a3b8;
 }

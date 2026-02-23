@@ -42,7 +42,7 @@ function calcularLitrosTinta(area, tipoPintura) {
 
   if (restante >= 18) {
     latas18 = Math.floor(restante / 18);
-    restante = restante - latas18 * 18;
+    restante -= latas18 * 18;
   }
 
   if (restante > 0) {
@@ -65,17 +65,24 @@ function calcularLitrosTinta(area, tipoPintura) {
   };
 }
 
+/* ======================
+   Resultado dentro do mesmo card
+   ====================== */
+
 function mostrarResultado(tipo, dados) {
   const slideResumo = document.getElementById("slideResumo");
   const slideRecomendacoes = document.getElementById("slideRecomendacoes");
-  const resultadoSection = document.getElementById("resultadoSection");
+  const wizard = document.getElementById("calcWizard");
+  const resultadoBox = document.getElementById("calcResultado");
 
-  if (!slideResumo || !slideRecomendacoes || !resultadoSection) return;
+  if (!slideResumo || !slideRecomendacoes || !wizard || !resultadoBox) return;
 
   slideResumo.innerHTML = dados.resumoHtml;
   slideRecomendacoes.innerHTML = dados.recomendacoesHtml;
 
-  resultadoSection.style.display = "block";
+  // esconde formulário, mostra resumo
+  wizard.style.display = "none";
+  resultadoBox.style.display = "block";
 
   if (swiper && typeof swiper.update === "function") {
     swiper.update();
@@ -83,8 +90,6 @@ function mostrarResultado(tipo, dados) {
   if (swiper && typeof swiper.slideTo === "function") {
     swiper.slideTo(0);
   }
-
-  resultadoSection.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 /* ======================
@@ -336,11 +341,6 @@ function initTipoSelector() {
       if (btnContinuar) {
         btnContinuar.disabled = false;
       }
-
-      const calcSection = document.getElementById("Calc");
-      if (calcSection) {
-        calcSection.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
     });
   });
 
@@ -372,40 +372,52 @@ function initNavegacaoPassos() {
     if (action === "next" && indexAtual < steps.length - 1) {
       steps[indexAtual].style.display = "none";
       steps[indexAtual + 1].style.display = "block";
-      steps[indexAtual + 1].scrollIntoView({ behavior: "smooth", block: "start" });
     } else if (action === "prev" && indexAtual > 0) {
       steps[indexAtual].style.display = "none";
       steps[indexAtual - 1].style.display = "block";
-      steps[indexAtual - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (action === "prev" && indexAtual === 0) {
+      // voltar da 1ª etapa do fluxo para a seleção de tipo
+      const wizard = document.getElementById("calcWizard");
+      if (!wizard) return;
+      const stepSelector = wizard.querySelector(".calc-step-selector");
+      if (stepSelector) stepSelector.style.display = "block";
+
+      const flows = wizard.querySelectorAll(".calc-type-flow");
+      flows.forEach((flow) => (flow.style.display = "none"));
     }
   });
 }
 
+/* ======================
+   Swiper dentro do card
+   ====================== */
+
 function initSwiperResultado() {
-  const swiperContainer = document.querySelector("#resultadoSection .swiper");
+  const swiperContainer = document.querySelector("#calcResultado .swiper");
   if (!swiperContainer || typeof Swiper === "undefined") return;
 
   swiper = new Swiper(swiperContainer, {
     slidesPerView: 1,
     spaceBetween: 16,
     pagination: {
-      el: "#resultadoSection .swiper-pagination",
+      el: "#calcResultado .swiper-pagination",
       clickable: true
     }
   });
 }
 
-/* Botão "Novo cálculo" (no resultado) */
+/* Botão "Novo cálculo" */
 
 function mostrarFormulario() {
-  const resultadoSection = document.getElementById("resultadoSection");
-  if (resultadoSection) {
-    resultadoSection.style.display = "none";
-  }
-
   const wizard = document.getElementById("calcWizard");
-  if (!wizard) return;
+  const resultadoBox = document.getElementById("calcResultado");
+  if (!wizard || !resultadoBox) return;
 
+  // volta pro formulário
+  resultadoBox.style.display = "none";
+  wizard.style.display = "block";
+
+  // volta para seleção de tipo, limpa seleção
   const stepSelector = wizard.querySelector(".calc-step-selector");
   if (stepSelector) {
     stepSelector.style.display = "block";
@@ -425,11 +437,6 @@ function mostrarFormulario() {
   }
 
   tipoSelecionado = null;
-
-  const calcSection = document.getElementById("Calc");
-  if (calcSection) {
-    calcSection.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
 }
 
 window.mostrarFormulario = mostrarFormulario;

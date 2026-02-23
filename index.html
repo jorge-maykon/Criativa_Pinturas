@@ -464,593 +464,775 @@
       </div>
     </section>
 
-    <!-- /Team Section -->
-    <section class="calculadora section light-background" id="calc">
-      <div class="container" data-aos="fade-up">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="calc-card shadow-sm">
-              <span class="calc-badge">Planejamento de pintura</span>
-              <p class="calc-subtitle">
-                Primeiro escolha o tipo de ambiente. Em seguida, responda às perguntas para obter os materiais
-                necessários.
-              </p>
-              <div class="calc-wizard" id="calcWizard">
-                <!-- ETAPA 0: seleção do tipo -->
-                <div class="calc-step calc-step-selector" data-step="0">
-                  <div class="row g-3 calc-type-selector">
+      <!-- /Team Section -->
+<section class="calculadora section light-background" id="calc">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="calc-card shadow-sm">
+          <div class="calc-header">
+            <span class="calc-badge">Planejamento de pintura</span>
+            <h2 class="calc-title">Calculadora de Materiais</h2>
+            <p class="calc-subtitle">
+              Primeiro escolha o tipo de ambiente. Em seguida, responda às perguntas para estimarmos
+              a metragem e os materiais necessários.
+            </p>
+          </div>
+
+          <!-- WIZARD / PERGUNTAS -->
+          <div class="calc-wizard" id="calcWizard">
+            <!-- ETAPA 0: seleção do tipo -->
+            <div class="calc-step calc-step-selector" data-step="0">
+              <div class="row g-3 calc-type-selector">
+                <div class="col-md-4">
+                  <button type="button" class="calc-type-card" data-tipo="residencial">
+                    <div class="calc-type-card-icon">
+                      <i class="bi bi-house-door"></i>
+                    </div>
+                    <div>
+                      <div class="calc-type-card-title">Residencial</div>
+                      <p class="calc-type-card-text">
+                        Casas e apartamentos, considerando paredes, portas e janelas.
+                      </p>
+                      <small>Ideal para salas, quartos, corredores e áreas internas.</small>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="calc-type-card" data-tipo="comercial">
+                    <div class="calc-type-card-icon">
+                      <i class="bi bi-shop-window"></i>
+                    </div>
+                    <div>
+                      <div class="calc-type-card-title">Comercial</div>
+                      <p class="calc-type-card-text">
+                        Lojas e escritórios, focando em grandes planos de parede.
+                      </p>
+                      <small>Vitrines e vidros não entram na área pintada.</small>
+                    </div>
+                  </button>
+                </div>
+                <div class="col-md-4">
+                  <button type="button" class="calc-type-card" data-tipo="predial">
+                    <div class="calc-type-card-icon">
+                      <i class="bi bi-building"></i>
+                    </div>
+                    <div>
+                      <div class="calc-type-card-title">Predial / Muros</div>
+                      <p class="calc-type-card-text">
+                        Fachadas de prédios e muros externos, com estruturas de acesso.
+                      </p>
+                      <small>Considera altura, perímetro e áreas adicionais de muros.</small>
+                    </div>
+                  </button>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-3">
+                <span class="calc-step-indicador">Etapa 1 de 4 · Selecione o tipo de área</span>
+                <button type="button" class="btn btn-primary" id="btnWizardContinuar" disabled>
+                  Continuar
+                </button>
+              </div>
+            </div>
+
+            <!-- FLUXO RESIDENCIAL -->
+            <div class="calc-type-flow" data-tipo="residencial">
+              <form id="formCalcResidencial" class="calc-form">
+                <!-- RESIDENCIAL – ETAPA 1 (paredes) -->
+                <div class="calc-step mb-3" data-step="1">
+                  <div class="row g-4">
+                    <!-- BLOCO AZUL -->
                     <div class="col-md-4">
-                      <div type="button" class="calc-type-card" data-tipo="residencial">
-                        <div class="calc-type-card-icon">
-                          <i class="bi bi-house-door"></i>
-                        </div>
-                        <div>
-                          <div class="calc-type-card-title">Residencial</div>
-                          <p class="calc-type-card-text">
-                            Casas e apartamentos, considerando paredes, portas e janelas.
-                          </p>
-                          <small>Ideal para salas, quartos, corredores e áreas internas.</small>
+                      <div class="calc-step-panel">
+                        <p class="calc-step-mini">Etapa 2 de 4 · Medidas das paredes</p>
+
+                        <label for="resNumParedes" class="form-label mb-1">
+                          Quantas paredes serão pintadas?
+                        </label>
+
+                        <input
+                          type="number"
+                          class="form-control mb-2"
+                          id="resNumParedes"
+                          min="1"
+                          max="12"
+                          value="4"
+                          required
+                        />
+
+                        <div class="form-text">
+                          A calculadora cria os campos de medidas para cada parede.
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
-                      <div type="button" class="calc-type-card" data-tipo="comercial">
-                        <div class="calc-type-card-icon">
-                          <i class="bi bi-shop-window"></i>
-                        </div>
-                        <div>
-                          <div class="calc-type-card-title">Comercial</div>
-                          <p class="calc-type-card-text">
-                            Lojas e escritórios, focando em grandes planos de parede.
-                          </p>
-                          <small>Vitrines e vidros não entram na área pintada.</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div type="button" class="calc-type-card" data-tipo="predial">
-                        <div class="calc-type-card-icon">
-                          <i class="bi bi-building"></i>
-                        </div>
-                        <div>
-                          <div class="calc-type-card-title">Predial / Muros</div>
-                          <p class="calc-type-card-text">
-                            Fachadas de prédios e muros externos, com estruturas de acesso.
-                          </p>
-                          <small>Considera altura, perímetro e áreas adicionais de muros.</small>
-                        </div>
+
+                    <!-- MEDIDAS DAS PAREDES -->
+                    <div class="col-md-8">
+                      <label class="form-label">
+                        Medidas das paredes (largura x altura em metros)
+                      </label>
+                      <div id="resParedesContainer" class="paredes-container"></div>
+                      <div class="form-text">
+                        Informe a largura e a altura de cada parede.
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex justify-content-between align-items-center mt-3">
-                    <span class="calc-step-indicador">Etapa 1 de 4 · Selecione a tipo de área</span>
-                    <button type="button" class="btn btn-primary" id="btnWizardContinuar" disabled>
-                      Continuar
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                      Voltar
+                    </button>
+                    <button type="button" class="btn btn-primary" data-step-action="next">
+                      Próxima pergunta
                     </button>
                   </div>
                 </div>
-                <!-- FLUXO RESIDENCIAL -->
-                <div class="calc-type-flow" data-tipo="residencial">
-                  <form id="formCalcResidencial" class="calc-form">
-                    <!-- RESIDENCIAL – ETAPA 1 -->
-                    <div class="border border-success container-fluid B-medida calc-step mb-3" data-step="1" >
-                      <div class="aloc row g-4">
-                        <div class="col-md-6 card-header">
-                          <label for="resNumParedes" class="form-label">
-                            Quantas paredes serão pintadas?
-                          </label>
-                          <input type="number" class="form-control" id="resNumParedes" min="1" max="12" value="4"required />
-                          <div class="form-text ">
-                            Informe a medida de cada parede separadamente incluindo janelas e portas.
-                          </div>
-                        </div>
+
+                <!-- RESIDENCIAL – ETAPA 2 (janelas/portas) -->
+                <div class="calc-step" data-step="2">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label for="resAreaJanelas" class="form-label">
+                        Área total das janelas (m²)
+                      </label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="resAreaJanelas"
+                        value="0"
+                      />
+                      <div class="form-text">
+                        Some largura x altura de todas as janelas que não serão pintadas.
                       </div>
                     </div>
-                    <div class="B-medida border border-primary g-4">
-                      <div class="col-md-12">
-                        <label class="form-label">
-                          Medidas das paredes (largura x altura em metros)
-                        </label>
-                        <div id="resParedesContainer" class="paredes-container"></div>
-                        
-                      </div>
-                    
-                    <div class="g-4">
-                      <div class="col-md-4">
-                        <label for="resAreaJanelas" class="form-label">
-                          Área total das janelas (m²)
-                        </label>
-                        <input type="number" step="0.1" min="0" class="form-control" id="resAreaJanelas" value="0" />
-                        <div class="form-text">
-                          Some largura x altura de todas as janelas que não serão pintadas.
-                        </div>
-                        <label for="resAreaPortas" class="form-label">
-                          Área total das portas (m²)
-                        </label>
-                        <input type="number" step="0.1" min="0" class="form-control" id="resAreaPortas" value="0" />
-                        <div class="form-text">
-                          Use apenas as portas que não receberão tinta.
-                        </div>
+                    <div class="col-md-6">
+                      <label for="resAreaPortas" class="form-label">
+                        Área total das portas (m²)
+                      </label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="resAreaPortas"
+                        value="0"
+                      />
+                      <div class="form-text">
+                        Use apenas as portas que não receberão tinta.
                       </div>
                     </div>
-                    </div>
-                    <span style="width:130px" class="calc-step-indicador">Etapa 2 de 4 · Medidas das paredes</span>
-                    <div class="d-flex justify-content-between align-items-center mt-4">
-                      <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                        Voltar
-                      </button>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                      Voltar
+                    </button>
+                    <div class="d-flex flex-column align-items-end">
+                      <span class="calc-step-indicador mb-1">
+                        Etapa 3 de 4 · Janelas e portas
+                      </span>
                       <button type="button" class="btn btn-primary" data-step-action="next">
                         Próxima pergunta
                       </button>
                     </div>
-                    <!-- RESIDENCIAL – ETAPA 2 -->
-                    <div class="calc-step" data-step="2">
-                      <div class="row g-4">
-                        <div class="col-md-6">
-                          <label for="resAreaJanelas" class="form-label">
-                            Área total das janelas (m²)
-                          </label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="resAreaJanelas" value="0" />
-                          <div class="form-text">
-                            Some largura x altura de todas as janelas que não serão pintadas.
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <label for="resAreaPortas" class="form-label">
-                            Área total das portas (m²)
-                          </label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="resAreaPortas" value="0" />
-                          <div class="form-text">
-                            Use apenas as portas que não receberão tinta.
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                          Voltar
-                        </button>
-                        <div class="d-flex flex-column align-items-end">
-                          <span class="calc-step-indicador mb-1">
-                            Etapa 3 de 4 · Janelas e portas
-                          </span>
-                          <button type="button" class="btn btn-primary" data-step-action="next">
-                            Próxima pergunta
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- RESIDENCIAL – ETAPA 3 -->
-                    <div class="calc-step" data-step="3">
-                      <div class="row g-4">
-                        <div class="col-md-4">
-                          <fieldset class="calc-fieldset">
-                            <legend>Tipo de Pintura</legend>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="resTipoPintura" id="resPinturaNova"
-                                value="nova" checked />
-                              <label class="form-check-label" for="resPinturaNova">Nova</label>
-                            </div>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="resTipoPintura"
-                                id="resPinturaRepintura" value="repintura" />
-                              <label class="form-check-label" for="resPinturaRepintura">Repintura</label>
-                            </div>
-
-                            <p class="small text-muted mb-0">
-                              Pinturas novas costumam exigir mais preparo de superfície.
-                            </p>
-                          </fieldset>
-                        </div>
-
-                        <div class="col-md-8">
-                          <fieldset class="calc-fieldset">
-                            <legend>Patologias encontradas</legend>
-
-                            <div class="row gy-2">
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input resPatologia" type="checkbox" id="resPatInfiltracao"
-                                    value="infiltracao" />
-                                  <label class="form-check-label" for="resPatInfiltracao">Infiltração</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input resPatologia" type="checkbox" id="resPatMofo"
-                                    value="mofo" />
-                                  <label class="form-check-label" for="resPatMofo">Mofo</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input resPatologia" type="checkbox" id="resPatDescascando"
-                                    value="descascando" />
-                                  <label class="form-check-label" for="resPatDescascando">Descascamento</label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <p class="small text-muted mb-0 mt-2">
-                              Essas informações ajudam a estimar fundo preparador, massa e selador.
-                            </p>
-                          </fieldset>
-                        </div>
-                      </div>
-
-                      <div
-                        class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
-                        <div class="d-flex flex-wrap gap-2">
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-info-circle me-1"></i> 2 demãos padrão
-                          </span>
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-brush me-1"></i> Ambientes internos residenciais
-                          </span>
-                        </div>
-
-                        <div class="d-flex gap-2">
-                          <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                            Voltar
-                          </button>
-                          <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="bi bi-calculator me-2"></i> Calcular residencial
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                  </div>
                 </div>
-                <!-- Resultado com Carrossel -->
-                <section class="resultado section light-background" id="resultadoSection" style="display: none;">
-                  <div class="container" data-aos="fade-up">
-                    <div class="row justify-content-center">
-                      <div class="col-lg-8">
-                        <div class="resultado-card calc-card shadow-sm">
-                          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
-                            <div>
-                              <p class="calc-eyebrow mb-1">Estimativa Criativa Pinturas</p>
-                              <h3 class="calc-title mb-0">Resumo do cálculo</h3>
-                            </div>
-                            <span class="badge bg-light text-dark">Visita técnica recomendada</span>
-                          </div>
 
-                          <div class="swiper">
-                            <div class="swiper-wrapper">
-                              <div class="swiper-slide" id="slideResumo"></div>
-                              <div class="swiper-slide" id="slideRecomendacoes"></div>
-                            </div>
-                            <div class="swiper-pagination"></div>
-                          </div>
+                <!-- RESIDENCIAL – ETAPA 3 (tipo + patologias) -->
+                <div class="calc-step" data-step="3">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <fieldset class="calc-fieldset">
+                        <legend>Tipo de Pintura</legend>
 
-                          <div class="d-flex flex-column flex-sm-row gap-3 mt-4 botoes-controle">
-                            <button type="button" class="btn btn-outline-secondary flex-fill"
-                              onclick="mostrarFormulario()">
-                              <i class="bi bi-arrow-left"></i> Novo cálculo
-                            </button>
-                            <button type="button" class="btn btn-primary flex-fill"
-                              onclick="swiper && swiper.slideTo(0)">
-                              <i class="bi bi-card-list"></i> Ver resumo
-                            </button>
-                          </div>
-
-                          <p class="result-note mt-3 mb-0 small">
-                            <i class="bi bi-info-circle me-1"></i>
-                            Os valores apresentados são uma estimativa. O orçamento final é confirmado após visita
-                            técnica ao local.
-                          </p>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="resTipoPintura"
+                            id="resPinturaNova"
+                            value="nova"
+                            checked
+                          />
+                          <label class="form-check-label" for="resPinturaNova">Nova</label>
                         </div>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="resTipoPintura"
+                            id="resPinturaRepintura"
+                            value="repintura"
+                          />
+                          <label class="form-check-label" for="resPinturaRepintura">Repintura</label>
+                        </div>
+
+                        <p class="small text-muted mb-0">
+                          Pinturas novas costumam exigir mais preparo de superfície.
+                        </p>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-8">
+                      <fieldset class="calc-fieldset">
+                        <legend>Patologias encontradas</legend>
+
+                        <div class="row gy-2">
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input resPatologia"
+                                type="checkbox"
+                                id="resPatInfiltracao"
+                                value="infiltracao"
+                              />
+                              <label class="form-check-label" for="resPatInfiltracao">Infiltração</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input resPatologia"
+                                type="checkbox"
+                                id="resPatMofo"
+                                value="mofo"
+                              />
+                              <label class="form-check-label" for="resPatMofo">Mofo</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input resPatologia"
+                                type="checkbox"
+                                id="resPatDescascando"
+                                value="descascando"
+                              />
+                              <label class="form-check-label" for="resPatDescascando">Descascamento</label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <p class="small text-muted mb-0 mt-2">
+                          Essas informações ajudam a estimar fundo preparador, massa e selador.
+                        </p>
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div
+                    class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4"
+                  >
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-info-circle me-1"></i> 2 demãos padrão
+                      </span>
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-brush me-1"></i> Ambientes internos residenciais
+                      </span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                        Voltar
+                      </button>
+                      <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-calculator me-2"></i> Calcular residencial
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- FLUXO COMERCIAL -->
+            <div class="calc-type-flow" data-tipo="comercial">
+              <form id="formCalcComercial" class="calc-form">
+                <!-- COMERCIAL – ETAPA 1 -->
+                <div class="calc-step" data-step="1">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <label for="comLargura" class="form-label">Largura do ambiente (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="comLargura"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="comComprimento" class="form-label">Comprimento do ambiente (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="comComprimento"
+                        required
+                      />
+                    </div>
+                    <div class="col-md-4">
+                      <label for="comAltura" class="form-label">Altura do pé-direito (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="comAltura"
+                        required
+                      />
+                      <div class="form-text">
+                        Usado para calcular a área total das paredes internas.
                       </div>
                     </div>
                   </div>
-                </section>
-                <!-- /Call To Action Section -->
 
-                <!-- FLUXO COMERCIAL -->
-                <div class="calc-type-flow" data-tipo="comercial">
-                  <form id="formCalcComercial" class="calc-form">
-                    <!-- COMERCIAL – ETAPA 1 -->
-                    <div class="calc-step" data-step="1">
-                      <div class="row g-4">
-                        <div class="col-md-4">
-                          <label for="comLargura" class="form-label">Largura do ambiente (m)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="comLargura" required />
-                        </div>
-                        <div class="col-md-4">
-                          <label for="comComprimento" class="form-label">Comprimento do ambiente (m)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="comComprimento" required />
-                        </div>
-                        <div class="col-md-4">
-                          <label for="comAltura" class="form-label">Altura do pé-direito (m)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="comAltura" required />
-                          <div class="form-text">
-                            Usado para calcular a área total das paredes internas.
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                          Voltar
-                        </button>
-                        <div class="d-flex flex-column align-items-end">
-                          <span class="calc-step-indicador mb-1">
-                            Etapa 2 de 3 · Medidas do ambiente
-                          </span>
-                          <button type="button" class="btn btn-primary" data-step-action="next">
-                            Próxima pergunta
-                          </button>
-                        </div>
-                      </div>
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                      Voltar
+                    </button>
+                    <div class="d-flex flex-column align-items-end">
+                      <span class="calc-step-indicador mb-1">
+                        Etapa 2 de 2 · Medidas do ambiente
+                      </span>
+                      <button type="button" class="btn btn-primary" data-step-action="next">
+                        Próxima pergunta
+                      </button>
                     </div>
-
-                    <!-- COMERCIAL – ETAPA 2 -->
-                    <div class="calc-step" data-step="2">
-                      <div class="row g-4">
-                        <div class="col-md-4">
-                          <fieldset class="calc-fieldset">
-                            <legend>Tipo de Pintura</legend>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="comTipoPintura" id="comPinturaNova"
-                                value="nova" checked />
-                              <label class="form-check-label" for="comPinturaNova">Nova</label>
-                            </div>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="comTipoPintura"
-                                id="comPinturaRepintura" value="repintura" />
-                              <label class="form-check-label" for="comPinturaRepintura">Repintura</label>
-                            </div>
-
-                            <p class="small text-muted mb-0">
-                              Ambientes comerciais pedem maior resistência e durabilidade.
-                            </p>
-                          </fieldset>
-                        </div>
-
-                        <div class="col-md-8">
-                          <fieldset class="calc-fieldset">
-                            <legend>Patologias encontradas</legend>
-
-                            <div class="row gy-2">
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input comPatologia" type="checkbox" id="comPatUmidade"
-                                    value="umidade" />
-                                  <label class="form-check-label" for="comPatUmidade">Umidade</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input comPatologia" type="checkbox" id="comPatManchas"
-                                    value="manchas" />
-                                  <label class="form-check-label" for="comPatManchas">Manchas</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input comPatologia" type="checkbox" id="comPatDescascando"
-                                    value="descascando" />
-                                  <label class="form-check-label" for="comPatDescascando">Descascando</label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <p class="small text-muted mb-0 mt-2">
-                              Usamos essas informações para prever correções antes da pintura final.
-                            </p>
-                          </fieldset>
-                        </div>
-                      </div>
-
-                      <div
-                        class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
-                        <div class="d-flex flex-wrap gap-2">
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-info-circle me-1"></i> 2 demãos padrão
-                          </span>
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-briefcase me-1"></i> Lojas e escritórios
-                          </span>
-                        </div>
-
-                        <div class="d-flex gap-2">
-                          <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                            Voltar
-                          </button>
-                          <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="bi bi-calculator me-2"></i> Calcular comercial
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </form>
+                  </div>
                 </div>
 
-                <!-- FLUXO PREDIAL / MUROS -->
-                <div class="calc-type-flow" data-tipo="predial">
-                  <form id="formCalcPredial" class="calc-form">
-                    <!-- PREDIAL – ETAPA 1 -->
-                    <div class="calc-step" data-step="1">
-                      <div class="row g-4">
-                        <div class="col-md-4">
-                          <label for="predPerimetro" class="form-label">Perímetro da fachada (m)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="predPerimetro" required />
-                          <div class="form-text">
-                            Soma de todos os lados do prédio que serão pintados.
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <label for="predAltura" class="form-label">Altura total do prédio (m)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="predAltura" required />
-                          <div class="form-text">
-                            Da base ao topo da fachada que receberá a pintura.
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <label for="predNumPavimentos" class="form-label">Número de pavimentos</label>
-                          <input type="number" min="1" class="form-control" id="predNumPavimentos" />
-                          <div class="form-text">
-                            Importante para planejar logística e segurança.
-                          </div>
-                        </div>
-                      </div>
+                <!-- COMERCIAL – ETAPA 2 -->
+                <div class="calc-step" data-step="2">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <fieldset class="calc-fieldset">
+                        <legend>Tipo de Pintura</legend>
 
-                      <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                          Voltar
-                        </button>
-                        <div class="d-flex flex-column align-items-end">
-                          <span class="calc-step-indicador mb-1">
-                            Etapa 2 de 4 · Dimensões da fachada
-                          </span>
-                          <button type="button" class="btn btn-primary" data-step-action="next">
-                            Próxima pergunta
-                          </button>
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="comTipoPintura"
+                            id="comPinturaNova"
+                            value="nova"
+                            checked
+                          />
+                          <label class="form-check-label" for="comPinturaNova">Nova</label>
                         </div>
-                      </div>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="comTipoPintura"
+                            id="comPinturaRepintura"
+                            value="repintura"
+                          />
+                          <label class="form-check-label" for="comPinturaRepintura">Repintura</label>
+                        </div>
+
+                        <p class="small text-muted mb-0">
+                          Ambientes comerciais pedem maior resistência e durabilidade.
+                        </p>
+                      </fieldset>
                     </div>
 
-                    <!-- PREDIAL – ETAPA 2 -->
-                    <div class="calc-step" data-step="2">
-                      <div class="row g-4">
-                        <div class="col-md-6">
-                          <label for="predAreaMuros" class="form-label">Área adicional de muros (m²)</label>
-                          <input type="number" step="0.1" min="0" class="form-control" id="predAreaMuros" value="0" />
-                          <div class="form-text">
-                            Some as áreas de muros externos que também serão pintados.
+                    <div class="col-md-8">
+                      <fieldset class="calc-fieldset">
+                        <legend>Patologias encontradas</legend>
+
+                        <div class="row gy-2">
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input comPatologia"
+                                type="checkbox"
+                                id="comPatUmidade"
+                                value="umidade"
+                              />
+                              <label class="form-check-label" for="comPatUmidade">Umidade</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input comPatologia"
+                                type="checkbox"
+                                id="comPatManchas"
+                                value="manchas"
+                              />
+                              <label class="form-check-label" for="comPatManchas">Manchas</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input comPatologia"
+                                type="checkbox"
+                                id="comPatDescascando"
+                                value="descascando"
+                              />
+                              <label class="form-check-label" for="comPatDescascando">Descascando</label>
+                            </div>
                           </div>
                         </div>
-                        <div class="col-md-6">
-                          <fieldset class="calc-fieldset">
-                            <legend>Estruturas de acesso</legend>
 
+                        <p class="small text-muted mb-0 mt-2">
+                          Usamos essas informações para prever correções antes da pintura final.
+                        </p>
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div
+                    class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4"
+                  >
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-info-circle me-1"></i> 2 demãos padrão
+                      </span>
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-briefcase me-1"></i> Lojas e escritórios
+                      </span>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                        Voltar
+                      </button>
+                      <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-calculator me-2"></i> Calcular comercial
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- FLUXO PREDIAL / MUROS -->
+            <div class="calc-type-flow" data-tipo="predial">
+              <form id="formCalcPredial" class="calc-form">
+                <!-- PREDIAL – ETAPA 1 -->
+                <div class="calc-step" data-step="1">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <label for="predPerimetro" class="form-label">Perímetro da fachada (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="predPerimetro"
+                        required
+                      />
+                      <div class="form-text">
+                        Soma de todos os lados do prédio que serão pintados.
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="predAltura" class="form-label">Altura total do prédio (m)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="predAltura"
+                        required
+                      />
+                      <div class="form-text">
+                        Da base ao topo da fachada que receberá a pintura.
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="predNumPavimentos" class="form-label">Número de pavimentos</label>
+                      <input
+                        type="number"
+                        min="1"
+                        class="form-control"
+                        id="predNumPavimentos"
+                      />
+                      <div class="form-text">
+                        Importante para planejar logística e segurança.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                      Voltar
+                    </button>
+                    <div class="d-flex flex-column align-items-end">
+                      <span class="calc-step-indicador mb-1">
+                        Etapa 2 de 4 · Dimensões da fachada
+                      </span>
+                      <button type="button" class="btn btn-primary" data-step-action="next">
+                        Próxima pergunta
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PREDIAL – ETAPA 2 -->
+                <div class="calc-step" data-step="2">
+                  <div class="row g-4">
+                    <div class="col-md-6">
+                      <label for="predAreaMuros" class="form-label">Área adicional de muros (m²)</label>
+                      <input
+                        type="number"
+                        step="0.1"
+                        min="0"
+                        class="form-control"
+                        id="predAreaMuros"
+                        value="0"
+                      />
+                      <div class="form-text">
+                        Some as áreas de muros externos que também serão pintados.
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <fieldset class="calc-fieldset">
+                        <legend>Estruturas de acesso</legend>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="predUsaAndaime"
+                            value="andaime"
+                          />
+                          <label class="form-check-label" for="predUsaAndaime">Uso de andaime</label>
+                        </div>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            id="predUsaBalancim"
+                            value="balancim"
+                          />
+                          <label class="form-check-label" for="predUsaBalancim">
+                            Balancim / plataforma
+                          </label>
+                        </div>
+
+                        <p class="small text-muted mb-0 mt-2">
+                          Não muda a metragem, mas entra nas recomendações de materiais e logística.
+                        </p>
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                      Voltar
+                    </button>
+                    <div class="d-flex flex-column align-items-end">
+                      <span class="calc-step-indicador mb-1">
+                        Etapa 3 de 4 · Muros e acesso
+                      </span>
+                      <button type="button" class="btn btn-primary" data-step-action="next">
+                        Próxima pergunta
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- PREDIAL – ETAPA 3 -->
+                <div class="calc-step" data-step="3">
+                  <div class="row g-4">
+                    <div class="col-md-4">
+                      <fieldset class="calc-fieldset">
+                        <legend>Tipo de Pintura</legend>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="predTipoPintura"
+                            id="predPinturaNova"
+                            value="nova"
+                            checked
+                          />
+                          <label class="form-check-label" for="predPinturaNova">Nova</label>
+                        </div>
+
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="predTipoPintura"
+                            id="predPinturaRepintura"
+                            value="repintura"
+                          />
+                          <label class="form-check-label" for="predPinturaRepintura">Repintura</label>
+                        </div>
+                      </fieldset>
+                    </div>
+
+                    <div class="col-md-8">
+                      <fieldset class="calc-fieldset">
+                        <legend>Patologias na fachada</legend>
+
+                        <div class="row gy-2">
+                          <div class="col-sm-4">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="predUsaAndaime" value="andaime" />
-                              <label class="form-check-label" for="predUsaAndaime">Uso de andaime</label>
+                              <input
+                                class="form-check-input predPatologia"
+                                type="checkbox"
+                                id="predPatTrincas"
+                                value="trincas"
+                              />
+                              <label class="form-check-label" for="predPatTrincas">Trincas</label>
                             </div>
-
+                          </div>
+                          <div class="col-sm-4">
                             <div class="form-check">
-                              <input class="form-check-input" type="checkbox" id="predUsaBalancim" value="balancim" />
-                              <label class="form-check-label" for="predUsaBalancim">
-                                Balancim / plataforma
+                              <input
+                                class="form-check-input predPatologia"
+                                type="checkbox"
+                                id="predPatUmidade"
+                                value="umidade"
+                              />
+                              <label class="form-check-label" for="predPatUmidade">Umidade</label>
+                            </div>
+                          </div>
+                          <div class="col-sm-4">
+                            <div class="form-check">
+                              <input
+                                class="form-check-input predPatologia"
+                                type="checkbox"
+                                id="predPatDesplacamento"
+                                value="desplacamento"
+                              />
+                              <label class="form-check-label" for="predPatDesplacamento">
+                                Desplacamento
                               </label>
                             </div>
-
-                            <p class="small text-muted mb-0 mt-2">
-                              Não muda a metragem, mas entra nas recomendações de materiais e logística.
-                            </p>
-                          </fieldset>
+                          </div>
                         </div>
-                      </div>
 
-                      <div class="d-flex justify-content-between align-items-center mt-4">
-                        <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                          Voltar
-                        </button>
-                        <div class="d-flex flex-column align-items-end">
-                          <span class="calc-step-indicador mb-1">
-                            Etapa 3 de 4 · Muros e acesso
-                          </span>
-                          <button type="button" class="btn btn-primary" data-step-action="next">
-                            Próxima pergunta
-                          </button>
-                        </div>
-                      </div>
+                        <p class="small text-muted mb-0 mt-2">
+                          Trincas e infiltrações costumam exigir tratamento específico.
+                        </p>
+                      </fieldset>
+                    </div>
+                  </div>
+
+                  <div
+                    class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4"
+                  >
+                    <div class="d-flex flex-wrap gap-2">
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-info-circle me-1"></i> Fachada + muros
+                      </span>
+                      <span class="badge rounded-pill bg-light text-dark">
+                        <i class="bi bi-building-check me-1"></i> Condomínios e prédios
+                      </span>
                     </div>
 
-                    <!-- PREDIAL – ETAPA 3 -->
-                    <div class="calc-step" data-step="3">
-                      <div class="row g-4">
-                        <div class="col-md-4">
-                          <fieldset class="calc-fieldset">
-                            <legend>Tipo de Pintura</legend>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="predTipoPintura" id="predPinturaNova"
-                                value="nova" checked />
-                              <label class="form-check-label" for="predPinturaNova">Nova</label>
-                            </div>
-
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="predTipoPintura"
-                                id="predPinturaRepintura" value="repintura" />
-                              <label class="form-check-label" for="predPinturaRepintura">Repintura</label>
-                            </div>
-                          </fieldset>
-                        </div>
-
-                        <div class="col-md-8">
-                          <fieldset class="calc-fieldset">
-                            <legend>Patologias na fachada</legend>
-
-                            <div class="row gy-2">
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input predPatologia" type="checkbox" id="predPatTrincas"
-                                    value="trincas" />
-                                  <label class="form-check-label" for="predPatTrincas">Trincas</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input predPatologia" type="checkbox" id="predPatUmidade"
-                                    value="umidade" />
-                                  <label class="form-check-label" for="predPatUmidade">Umidade</label>
-                                </div>
-                              </div>
-                              <div class="col-sm-4">
-                                <div class="form-check">
-                                  <input class="form-check-input predPatologia" type="checkbox"
-                                    id="predPatDesplacamento" value="desplacamento" />
-                                  <label class="form-check-label" for="predPatDesplacamento">
-                                    Desplacamento
-                                  </label>
-                                </div>
-                              </div>
-                            </div>
-
-                            <p class="small text-muted mb-0 mt-2">
-                              Trincas e infiltrações costumam exigir tratamento específico.
-                            </p>
-                          </fieldset>
-                        </div>
-                      </div>
-
-                      <div
-                        class="calc-footer d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mt-4">
-                        <div class="d-flex flex-wrap gap-2">
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-info-circle me-1"></i> Fachada + muros
-                          </span>
-                          <span class="badge rounded-pill bg-light text-dark">
-                            <i class="bi bi-building-check me-1"></i> Condomínios e prédios
-                          </span>
-                        </div>
-
-                        <div class="d-flex gap-2">
-                          <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
-                            Voltar
-                          </button>
-                          <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="bi bi-calculator me-2"></i> Calcular predial
-                          </button>
-                        </div>
-                      </div>
+                    <div class="d-flex gap-2">
+                      <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
+                        Voltar
+                      </button>
+                      <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-calculator me-2"></i> Calcular predial
+                      </button>
                     </div>
-                  </form>
+                  </div>
                 </div>
-                <!-- /FLUXOS -->
-              </div> <!-- /calc-wizard -->
+              </form>
+            </div>
+            <!-- /FLUXOS -->
+          </div> <!-- /calc-wizard -->
+
+          <!-- RESULTADO DENTRO DO MESMO CARD -->
+          <div id="calcResultado" class="calc-resultado resultado" style="display: none;">
+            <div class="resultado-card">
+              <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                <div>
+                  <p class="calc-eyebrow mb-1">Estimativa Criativa Pinturas</p>
+                  <h3 class="calc-title mb-0">Resumo do cálculo</h3>
+                </div>
+                <span class="badge bg-light text-dark">Visita técnica recomendada</span>
+              </div>
+
+              <div class="swiper">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide" id="slideResumo"></div>
+                  <div class="swiper-slide" id="slideRecomendacoes"></div>
+                </div>
+                <div class="swiper-pagination"></div>
+              </div>
+
+              <div class="d-flex flex-column flex-sm-row gap-3 mt-4 botoes-controle">
+                <button type="button" class="btn btn-outline-secondary flex-fill" onclick="mostrarFormulario()">
+                  <i class="bi bi-arrow-left"></i> Novo cálculo
+                </button>
+                <button type="button" class="btn btn-primary flex-fill" onclick="swiper && swiper.slideTo(0)">
+                  <i class="bi bi-card-list"></i> Ver resumo
+                </button>
+              </div>
+
+              <p class="result-note mt-3 mb-0 small">
+                <i class="bi bi-info-circle me-1"></i>
+                Os valores apresentados são uma estimativa. O orçamento final é confirmado após visita técnica ao local.
+              </p>
             </div>
           </div>
+          <!-- /RESULTADO -->
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADO COM CARROSSEL -->
+<section class="resultado section light-background" id="resultadoSection" style="display: none;">
+  <div class="container" data-aos="fade-up">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="resultado-card calc-card shadow-sm">
+          <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+            <div>
+              <p class="calc-eyebrow mb-1">Estimativa Criativa Pinturas</p>
+              <h3 class="calc-title mb-0">Resumo do cálculo</h3>
+            </div>
+            <span class="badge bg-light text-dark">Visita técnica recomendada</span>
+          </div>
+
+          <div class="swiper">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" id="slideResumo"></div>
+              <div class="swiper-slide" id="slideRecomendacoes"></div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
+
+          <div class="d-flex flex-column flex-sm-row gap-3 mt-4 botoes-controle">
+            <button type="button" class="btn btn-outline-secondary flex-fill" onclick="mostrarFormulario()">
+              <i class="bi bi-arrow-left"></i> Novo cálculo
+            </button>
+            <button type="button" class="btn btn-primary flex-fill" onclick="swiper && swiper.slideTo(0)">
+              <i class="bi bi-card-list"></i> Ver resumo
+            </button>
+          </div>
+
+          <p class="result-note mt-3 mb-0 small">
+            <i class="bi bi-info-circle me-1"></i>
+            Os valores apresentados são uma estimativa. O orçamento final é confirmado após visita técnica ao local.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Testimonials Section -->
 
