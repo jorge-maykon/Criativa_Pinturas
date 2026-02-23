@@ -3,6 +3,16 @@
    Estilo inspirado na Suvinil
    =========================== */
 
+.aloc{
+  justify-content: center;
+}
+
+.B-medida {
+  background-color: #e0f2fe;;
+  border-radius: 5px;
+  padding: 10px;
+}
+
 .calculadora {
   padding: 80px 0;
   background: #f8fafc;

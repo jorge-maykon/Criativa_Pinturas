@@ -529,39 +529,34 @@
                     </button>
                   </div>
                 </div>
-
                 <!-- FLUXO RESIDENCIAL -->
                 <div class="calc-type-flow" data-tipo="residencial">
                   <form id="formCalcResidencial" class="calc-form">
                     <!-- RESIDENCIAL – ETAPA 1 -->
-                    <div class="calc-step border-primary mb-3" data-step="1">
-                      <div class="row g-4">
-                        <div class="col-md-3 card-header">
+                    <div class="border border-success container-fluid B-medida calc-step mb-3" data-step="1" >
+                      <div class="aloc row g-4">
+                        <div class="col-md-6 card-header">
                           <label for="resNumParedes" class="form-label">
                             Quantas paredes serão pintadas?
                           </label>
-                          <span class="calc-step-indicador">Etapa 2 de 4 · Medidas das paredes</span>
-                          <input type="number" class="form-control" id="resNumParedes" min="1" max="12" value="4"
-                            required />
+                          <input type="number" class="form-control" id="resNumParedes" min="1" max="12" value="4"required />
                           <div class="form-text ">
                             Informe a medida de cada parede separadamente incluindo janelas e portas.
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row g-4">
+                    <div class="B-medida border border-primary g-4">
                       <div class="col-md-12">
                         <label class="form-label">
                           Medidas das paredes (largura x altura em metros)
                         </label>
                         <div id="resParedesContainer" class="paredes-container"></div>
-                        <div class="form-text">
-                          Informe a largura e a altura de cada parede.
-                        </div>
+                        
                       </div>
-                    </div>
-                    <div class="row g-4">
-                      <div class="col-md-6">
+                    
+                    <div class="g-4">
+                      <div class="col-md-4">
                         <label for="resAreaJanelas" class="form-label">
                           Área total das janelas (m²)
                         </label>
@@ -569,8 +564,6 @@
                         <div class="form-text">
                           Some largura x altura de todas as janelas que não serão pintadas.
                         </div>
-                      </div>
-                      <div class="col-md-6">
                         <label for="resAreaPortas" class="form-label">
                           Área total das portas (m²)
                         </label>
@@ -580,15 +573,16 @@
                         </div>
                       </div>
                     </div>
+                    </div>
+                    <span style="width:130px" class="calc-step-indicador">Etapa 2 de 4 · Medidas das paredes</span>
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                      <button type="button" class="btn btn-primary" data-step-action="next">
-                        Próxima pergunta
-                      </button>
                       <button type="button" class="btn btn-outline-secondary" data-step-action="prev">
                         Voltar
                       </button>
+                      <button type="button" class="btn btn-primary" data-step-action="next">
+                        Próxima pergunta
+                      </button>
                     </div>
-
                     <!-- RESIDENCIAL – ETAPA 2 -->
                     <div class="calc-step" data-step="2">
                       <div class="row g-4">
@@ -601,7 +595,7 @@
                             Some largura x altura de todas as janelas que não serão pintadas.
                           </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <label for="resAreaPortas" class="form-label">
                             Área total das portas (m²)
                           </label>
