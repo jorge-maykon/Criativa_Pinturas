@@ -120,8 +120,8 @@
 /* Formulários das calculadoras */
 
 .calculadora .calc-form .form-label {
-  font-weight: 600;
-  color: #0f172a;
+  font-weight: 12000;
+  color: #000000;
 }
 
 .calculadora .form-text {
@@ -197,7 +197,7 @@
 /* Painel azul da pergunta principal */
 
 .calculadora .calc-step-panel {
-  background: #e0f2fe;
+  background: #51db7f;
   border-radius: 12px;
   padding: 12px 14px;
   height: 100%;
@@ -226,7 +226,7 @@
 
 .calculadora .calc-step-panel .form-text {
   font-size: 0.78rem;
-  color: #64748b;
+  color: #000000;
 }
 
 /* ===========================
